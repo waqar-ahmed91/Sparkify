@@ -26,6 +26,6 @@ The dataset was messy and most of the datatypes are incorrect as well as some of
 
 Waqar Ahmed - waqar.nu@gmail.com
 
-Blog Link: [])
+Blog Link: [https://waqar-ahmed91.github.io/](https://waqar-ahmed91.github.io/)
 
 Project Link: [https://github.com/waqar-ahmed91/Sparkify](https://github.com/waqar-ahmed91/Sparkify)
