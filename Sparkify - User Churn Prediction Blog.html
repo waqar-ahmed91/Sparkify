@@ -14267,7 +14267,13 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Project-Overview">Project Overview<a class="anchor-link" href="#Project-Overview">&#182;</a></h1><p>This project is all about analyzing and predicting the churn rate of the users from the data provided by a fictional music streaming company called 'Sparkify'. Users used this platform as a free member and paid member. While using the service data is generated in terms of playing a song, visiting a page etc.. According to the company some users downgraded their services from paid to free and some leave the services after using it for some time. So the main purpose of this project is to design a model that can predict the churn rate of the users according to the data provided.</p>
 <h1 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">&#182;</a></h1><p>Predict the churn rate of the users i.e if a user downgrade his/her services to free from paid subscription or leave the services/deactivate his/her account from the platform. For this purpose a machine learning model will be build from using different features to predict the churn of a new customer according to his/her activity while using the Sparkify platform.</p>
-<h1 id="Metrics">Metrics<a class="anchor-link" href="#Metrics">&#182;</a></h1><p>f1-score (combination of precision and recall) is used to measure and evaluate the performance of the machine learning model on the dataset provided.</p>
+<p>The full dataset is about 12 GB in space which is suitable for Amazon EMR cluster while we use the mini dataset that is 128 MB in size to carry on the task and prepare all the necessary tasks before going for the full dataset. Apache Spark engine will be used to process and analyze the large scale data and as it is a classfication problem to predict if users churn or not so following machine learning techniques will be used to predict the churn rate of the users.</p>
+<ol>
+<li>Linear Regression</li>
+<li>Random Forest Classifier</li>
+</ol>
+<p>Other than these above mentioned models there are other classification models which can be used to check and get even better performance.</p>
+<h1 id="Metrics">Metrics<a class="anchor-link" href="#Metrics">&#182;</a></h1><p>f1-score (combination of precision and recall) will be used to measure and evaluate the performance of the machine learning model on the dataset provided. The main reason to use f1-score to measure the performance is because the churned user data is imbalance in the dataset due to its unequal distribution so to achieve a balanced results f1-score will be used.</p>
 
 </div>
 </div>
@@ -14281,6 +14287,12 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis">&#182;</a></h1>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="Data-Size">Data Size<a class="anchor-link" href="#Data-Size">&#182;</a></h3><p>There are <strong>286500</strong> rows and <strong>18</strong> columns are in the dataset.</p>
+
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -14361,12 +14373,13 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Feature-Engineering">Feature Engineering<a class="anchor-link" href="#Feature-Engineering">&#182;</a></h1><p>After some thorough data analysis and visualization few of the features are taken from the dataset to train the model to predict the new users churn rate. For this purpose following features has been selected after thorough cleaning and observations
 <img src="feature_selection.png" alt="title"></p>
+<p>During the feature engineering process to make the data ready for Apache Spark further preprocessing required to make the data according to PySpark standards to fit and train the model with or without parameters.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Before training the models churned column name from the above dataset is changed to label.</p>
+<p>Before training the models churned column name from the above dataset is changed to <strong>label</strong>.</p>
 <p><img src="label_name.png" alt="title"></p>
 
 </div>
@@ -14378,14 +14391,14 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>After feature engineering and selection data is split into train and test set as well as vector assember and standard scaler is used on the dataset for training the models and getting the better accuracy.</p>
+<p>After feature engineering and selection data is split into train and test set as well as vector assember and standard scaler is used on the dataset for training the models and getting the better f1-score.</p>
 <p><img src="modeling.png" alt="title"></p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Models">Models<a class="anchor-link" href="#Models">&#182;</a></h1><p>Logistic Regression and Random Forest Classifier has been used to fit the train data to predict the test data.</p>
+<h1 id="Models">Models<a class="anchor-link" href="#Models">&#182;</a></h1><p><strong>Logistic Regression</strong> and <strong>Random Forest Classifier</strong> has been used to fit the train data to predict the test data.</p>
 
 </div>
 </div>
@@ -14427,7 +14440,30 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Refinement">Refinement<a class="anchor-link" href="#Refinement">&#182;</a></h1><p>After training the data on both models with default parameters then we further checked the models by tuning the hyper parameters for this purpose we defined parameter grids for both Logistic Regression and Random Forest Classifier then fit the models on those parameters grid with the help of cross validation to increase the f1-score while doing so took a bit of time to train the models than default parameters while the result of f1-score came out somehow similar to the previous default parameters models.</p>
+<p>So extra features as well as other classification machine learning models need to be checked to compare the f1-score.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Model-Evaluation-and-Validation">Model Evaluation and Validation<a class="anchor-link" href="#Model-Evaluation-and-Validation">&#182;</a></h1><p>As such after tuning the hyperparameters for both models the result was somehow same for both models and both models took similar amount of time to fit and train the model even after using the 2 fold cross validation on the dataset the results were pretty much similar.</p>
+<p>so further fine tuning and different models need to be cross validated to get the better results in terms of f1-score.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Justification">Justification<a class="anchor-link" href="#Justification">&#182;</a></h1><p>f1-score for both of the models somehow above 60 percent i.e ~65.5% but in terms of real world application further enhancement of the model and tuning of the models as well as checking the other models on the dataset is necessary to achieve best f1-score results to make the model real world ready for the prediction of users churn. For this purpose naive bayes, SVC, Gradient Boost Classifier, XGBoost etc.. will be used in future to better the results.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h1><p>According to the above f1-scores both the models Logistic Regression and Random Forest performed same in terms of precision and recall having f1-score approximately <strong>65.5%</strong>.</p>
+<p>As the data was messy so it took a bit of time to preprocess the data for exploration and feature engineering even after preprocessing the data during the feature engineering process some more preprocessing was required to make the dataset ready for the Apache Spark modeling purpose.</p>
+<p>The models has been fit with and without paramter tuning but the results are somehow same while adding and tuning the parameters just increase the running time of fitting the model.</p>
+<p>As the dataset is too small as compared to the full dataset of 12 GB so it is better to move to the Amazon EMR Cluster to perform these above steps through EDA to featuring engineering then modeling and fine tuning of the model to get even better results in terms of churn rate prediction.</p>
 <h3 id="Further-Improvements">Further Improvements<a class="anchor-link" href="#Further-Improvements">&#182;</a></h3><ol>
 <li>Different models can be used to train the data other than Logistic and Random Forest to compare the f1-score of those models with the above ones.</li>
 <li>More parameter grids can be used to train the model which definitely take a lot of time.</li>
