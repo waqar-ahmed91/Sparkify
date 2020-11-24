@@ -5,6 +5,8 @@
   * [Built With](#built-with)
 * [Business Requirements](#business-requirements)
 * [Data Preparation](#data-preparation)
+* [Results](#results)
+* [Repository Files](#repository-files)
 * [Contact](#contact)
 
 
@@ -20,7 +22,11 @@ The business requirement is to predict the churn rate of the new users by traini
 <!-- Data Preparation -->
 ## Data Preparation
 The dataset was messy and most of the datatypes are incorrect as well as some of the data are missing so thorough data wrangling process is used to clean the data as much as possible to make the data consistent and suitable for analysis and fulfilling the above mentioned business requirements.
+## Results
+The f1-score for the both tuned models Logistic Regression and Random Forest Classifier was same approximately 65.5% which needs to be enhanced using some different approaches like further fine tuning the models or using different models like SVC, NaiveBayes, XGBoost etc..
 
+## Repository Files
+Sparkify.ipynb # Main Jupyter Notebook, Sparkify.html # HTML file of Main Notebook, Sparkify - User Churn Prediction Blog.html # Blog about user churn prediction, Sparkify - User Churn Prediction Blog.ipynb # Blog Notebook , README.md # README file to briefly describe the project. 
 <!-- CONTACT -->
 ## Contact
 
